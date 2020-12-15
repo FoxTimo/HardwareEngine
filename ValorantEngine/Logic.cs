@@ -43,7 +43,7 @@ class Logic
         static void Update()
         {
             System.DateTime lastshot = System.DateTime.Now;
-            ArduinoHandle ard = new ArduinoHandle("COM3");
+          
             while (true)
             {
                 Task.Delay(1); // ANTI CRASH
@@ -69,8 +69,9 @@ class Logic
                     // SHOOTING
                     var closes = forbidden.Select(t => (t - new Vector2(xSize / 2, ySize / 2))).OrderBy(t => t.Length()).ElementAt(0) + new Vector2(1, 1);
 
-                    MouseHandle.Initialize();
+                    ArduinoHandle ard = new ArduinoHandle("COM3");
 
+                    MouseHandle.Initialize();
 
                     if (MouseHandle.IsMouseButtonDown(MOUSE_BUTTONS.VK_LBUTTON))
                     {
