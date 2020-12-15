@@ -69,17 +69,14 @@ class Logic
                     // SHOOTING
                     var closes = forbidden.Select(t => (t - new Vector2(xSize / 2, ySize / 2))).OrderBy(t => t.Length()).ElementAt(0) + new Vector2(1, 1);
 
-                    ArduinoHandle ard = new ArduinoHandle("COM3");
-
                     MouseHandle.Initialize();
 
                     if (MouseHandle.IsMouseButtonDown(MOUSE_BUTTONS.VK_LBUTTON))
                     {
+                        ArduinoHandle ard = new ArduinoHandle("COM3");
                         ard.MoveMouse((int)(closes.X * (ValorantEngine.Properties.Settings.Default.speedX + Maths.getSpeed())), (int)(closes.Y * (ValorantEngine.Properties.Settings.Default.speedY + Maths.getSpeed())));
+                        ard.ClosePort();
                     }
-
-
-                    ard.ClosePort();
                 }
             }
         }
