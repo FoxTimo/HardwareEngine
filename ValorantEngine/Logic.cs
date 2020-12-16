@@ -6,8 +6,7 @@ using System.Collections;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Numerics;
-using System.Runtime.InteropServices;
-using System.IO.Ports;
+using System.Diagnostics;
 
 namespace ValorantEngine
 {
@@ -37,6 +36,9 @@ class Logic
 
         static void Main(string[] args)
         {
+            using (Process p = Process.GetCurrentProcess())
+                p.PriorityClass = ProcessPriorityClass.RealTime;
+
             Update();
         }
 
